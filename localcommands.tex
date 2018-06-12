@@ -67,27 +67,28 @@
 \end{tikzpicture}
 }
 
+\renewcommand{\kppyramid}{} %no color needed anymore
 \newcommand{\numcolone}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=blue!20!white] (mel)   {\parbox{2.2cm}{#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=blue!20!white] (atlantic) [above=of mel,yshift=-1cm] {\parbox{2.2cm}{#1}}; 
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mel)   {\parbox{2.2cm}{{\tiny Mel}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (atlantic) [above=of mel,yshift=-1cm] {{}\parbox{2.2cm}{{\tiny Atlantic }\\\footnotesize#1}}; 
 }
 \newcommand{\numcoltwo}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=red!80!white] (kru) [right=of mel,xshift=-1cm]  {\parbox{2.2cm}{#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=yellow!50!white] (mande) [above=of kru,yshift=-1cm] {\parbox{2.2cm}{#1}}; 
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kru) [right=of mel,xshift=-1cm]  {\parbox{2.2cm}{{\tiny Kru}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mande) [above=of kru,yshift=-1cm] {\parbox{2.2cm}{{\tiny Mande }\\\footnotesize#1}}; 
 }
 \newcommand{\numcolthree}[3]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=red!80!white]    (kwa) [right=of kru,xshift=-1cm] {\parbox{2.2cm}{#3}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=yellow!50!white] (gur) [above=of kwa,yshift=-1cm] {\parbox{2.2cm}{#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=yellow!50!white] (dogon) [above=of gur,yshift=-1cm] {\parbox{2.2cm}{#1}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kwa) [right=of kru,xshift=-1cm] {\parbox{2.2cm}{{\tiny Kwa}\\\footnotesize#3}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (gur) [above=of kwa,yshift=-1cm] {\parbox{2.2cm}{{\tiny Gur}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (dogon) [above=of gur,yshift=-1cm] {\parbox{2.2cm}{{\tiny Dogon}\\\footnotesize#1}};
 }
 \newcommand{\numcolfour}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=red!80!white] (ijo) [right=of kwa,xshift=-1cm]  {\parbox{2.2cm}{#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=green!50!gray] (ubangi) [above=of ijo,yshift=-1cm] {\parbox{2.2cm}{#1}};    
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ijo) [right=of kwa,xshift=-1cm]  {\parbox{2.2cm}{{\tiny Ijo}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ubangi) [above=of ijo,yshift=-1cm] {\parbox{2.2cm}{{\tiny Ubangi}\\\footnotesize#1}};    
 }
 \newcommand{\numcolfive}[3]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=red!80!white] (bc) [right=of ijo,xshift=-1cm] {\parbox{2.2cm}{#3}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=green!50!gray] (adamawa) [above=of bc,yshift=-1cm] {\parbox{2.2cm}{#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw, fill=white!80!gray](kordofan) [above=of adamawa,yshift=-1cm] {\parbox{2.2cm}{#1}};  
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (bc) [right=of ijo,xshift=-1cm] {\parbox{2.2cm}{{\tiny Benue-Congo}\\\footnotesize#3}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (adamawa) [above=of bc,yshift=-1cm] {\parbox{2.2cm}{{\tiny Adamawa}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kordofan) [above=of adamawa,yshift=-1cm] {\parbox{2.2cm}{{\tiny Kordofan}\\\footnotesize#1}};  
 }
 
 \newcommand{\numcolcomplete}[6]{%
