@@ -69,26 +69,26 @@
 
 \renewcommand{\kppyramid}{} %no color needed anymore
 \newcommand{\numcolone}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mel)   {\parbox{2.2cm}{{\tiny Mel}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (atlantic) [above=of mel,yshift=-1cm] {{}\parbox{2.2cm}{{\tiny Atlantic }\\\footnotesize#1}}; 
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mel)   {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Mel}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (atlantic) [above=of mel,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Atlantic }\\\footnotesize#1}}; 
 }
 \newcommand{\numcoltwo}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kru) [right=of mel,xshift=-1cm]  {\parbox{2.2cm}{{\tiny Kru}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mande) [above=of kru,yshift=-1cm] {\parbox{2.2cm}{{\tiny Mande }\\\footnotesize#1}}; 
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kru) [right=of mel,xshift=-1cm]  {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Kru}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mande) [above=of kru,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Mande }\\\footnotesize#1}}; 
 }
 \newcommand{\numcolthree}[3]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kwa) [right=of kru,xshift=-1cm] {\parbox{2.2cm}{{\tiny Kwa}\\\footnotesize#3}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (gur) [above=of kwa,yshift=-1cm] {\parbox{2.2cm}{{\tiny Gur}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (dogon) [above=of gur,yshift=-1cm] {\parbox{2.2cm}{{\tiny Dogon}\\\footnotesize#1}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kwa) [right=of kru,xshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Kwa}\\\footnotesize#3}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (gur) [above=of kwa,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Gur}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (dogon) [above=of gur,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Dogon}\\\footnotesize#1}};
 }
 \newcommand{\numcolfour}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ijo) [right=of kwa,xshift=-1cm]  {\parbox{2.2cm}{{\tiny Ijo}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ubangi) [above=of ijo,yshift=-1cm] {\parbox{2.2cm}{{\tiny Ubangi}\\\footnotesize#1}};    
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ijo) [right=of kwa,xshift=-1cm]  {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Ijo}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ubangi) [above=of ijo,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Ubangi}\\\footnotesize#1}};    
 }
 \newcommand{\numcolfive}[3]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (bc) [right=of ijo,xshift=-1cm] {\parbox{2.2cm}{{\tiny Benue-Congo}\\\footnotesize#3}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (adamawa) [above=of bc,yshift=-1cm] {\parbox{2.2cm}{{\tiny Adamawa}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kordofan) [above=of adamawa,yshift=-1cm] {\parbox{2.2cm}{{\tiny Kordofan}\\\footnotesize#1}};  
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (bc) [right=of ijo,xshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Benue-Congo}\\\footnotesize#3}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (adamawa) [above=of bc,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Adamawa}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kordofan) [above=of adamawa,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Kordofan}\\\footnotesize#1}};  
 }
 
 \newcommand{\numcolcomplete}[6]{%
@@ -105,3 +105,6 @@
 \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (etym) [above=of atlantic,yshift=-1cm] {{\bfseries\color{red}#6}};  
 \end{tikzpicture}
 }
+
+
+\newcommand{\lightshadecell}{\cellcolor{black!10!white}}
