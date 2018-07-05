@@ -44,24 +44,24 @@
 \newcommand{\kppyramid}{
 \begin{tikzpicture}
 \node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=blue!20!white] (mel)   {Mel};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=blue!20!white] (atlantic) [above=of mel,yshift=-1cm] {Atlantic}; 
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=blue!20!white] (atlantic) [above=of mel,yshift=-1.01cm] {Atlantic}; 
  
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white] (kru) [right=of mel,xshift=-1cm]  {Kru};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=yellow!50!white] (mande) [above=of kru,yshift=-1cm] {Mande}; 
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white] (kru) [right=of mel,xshift=-1.01cm]  {Kru};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=yellow!50!white] (mande) [above=of kru,yshift=-1.01cm] {Mande}; 
                                                                                 
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white]   (kwa) [right=of kru,xshift=-1cm] {Kwa};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=yellow!50!white] (gur) [above=of kwa,yshift=-1cm] {Gur};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=yellow!50!white] (dogon) [above=of gur,yshift=-1cm] {Dogon};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white]   (kwa) [right=of kru,xshift=-1.01cm] {Kwa};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=yellow!50!white] (gur) [above=of kwa,yshift=-1.01cm] {Gur};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=yellow!50!white] (dogon) [above=of gur,yshift=-1.01cm] {Dogon};
                                          
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white] (ijo) [right=of kwa,xshift=-1cm]  {Ijo};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=green!50!gray] (ubangi) [above=of ijo,yshift=-1cm] {Ubangi};                                                            
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white] (ijo) [right=of kwa,xshift=-1.01cm]  {Ijo};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=green!50!gray] (ubangi) [above=of ijo,yshift=-1.01cm] {Ubangi};                                                            
 
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white] (bc) [right=of ijo,xshift=-1cm] {BC};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=green!50!gray] (adamawa) [above=of bc,yshift=-1cm] {Adamawa};
-\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=white!80!gray] (kordofan) [above=of adamawa,yshift=-1cm] {Kordofan};  
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=red!80!white] (bc) [right=of ijo,xshift=-1.01cm] {BC};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=green!50!gray] (adamawa) [above=of bc,yshift=-1.01cm] {Adamawa};
+\node[minimum width=2.2cm, minimum height=.7cm, inner sep=3pt, draw, fill=white!80!gray] (kordofan) [above=of adamawa,yshift=-1.01cm] {Kordofan};  
 
 % \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (snc) [right=of adamawa,xshift=-.5cm] {{\bfseries\color{green}Southern NC}};       
-% \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (nnc) [above=of snc,yshift=-1cm]  {{\bfseries\color{brown}Northern NC}};
+% \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (nnc) [above=of snc,yshift=-1.01cm]  {{\bfseries\color{brown}Northern NC}};
 % \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (enc) [above=of adamawa,yshift=-.2cm] {{\bfseries Eastern NC}};    
 % \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (wnc) [above=of atlantic,yshift=-.2cm] {{\bfseries\color{blue}Western NC}};                                                            
 \end{tikzpicture}
@@ -69,26 +69,26 @@
 
 \renewcommand{\kppyramid}{} %no color needed anymore
 \newcommand{\numcolone}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mel)   {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Mel}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (atlantic) [above=of mel,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Atlantic }\\\footnotesize#1}}; 
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mel)   {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Mel}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (atlantic) [above=of mel,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Atlantic }\\\footnotesize#1}}; 
 }
 \newcommand{\numcoltwo}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kru) [right=of mel,xshift=-1cm]  {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Kru}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mande) [above=of kru,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Mande }\\\footnotesize#1}}; 
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kru) [right=of mel,xshift=-1.01cm]  {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Kru}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (mande) [above=of kru,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Mande }\\\footnotesize#1}}; 
 }
 \newcommand{\numcolthree}[3]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kwa) [right=of kru,xshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Kwa}\\\footnotesize#3}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (gur) [above=of kwa,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Gur}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (dogon) [above=of gur,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Dogon}\\\footnotesize#1}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kwa) [right=of kru,xshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Kwa}\\\footnotesize#3}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (gur) [above=of kwa,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Gur}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (dogon) [above=of gur,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Dogon}\\\footnotesize#1}};
 }
 \newcommand{\numcolfour}[2]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ijo) [right=of kwa,xshift=-1cm]  {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Ijo}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ubangi) [above=of ijo,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Ubangi}\\\footnotesize#1}};    
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ijo) [right=of kwa,xshift=-1.01cm]  {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Ijo}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (ubangi) [above=of ijo,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Ubangi}\\\footnotesize#1}};    
 }
 \newcommand{\numcolfive}[3]{%
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (bc) [right=of ijo,xshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Benue-Congo}\\\footnotesize#3}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (adamawa) [above=of bc,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Adamawa}\\\footnotesize#2}};
-\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kordofan) [above=of adamawa,yshift=-1cm] {\parbox{2.2cm}{\vspace*{-4mm}{\tiny Kordofan}\\\footnotesize#1}};  
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (bc) [right=of ijo,xshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Benue-Congo}\\\footnotesize#3}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (adamawa) [above=of bc,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Adamawa}\\\footnotesize#2}};
+\node[minimum width=2.2cm, minimum height=11mm, inner sep=3pt, draw] (kordofan) [above=of adamawa,yshift=-1.01cm] {\parbox[t][1cm][t]{2.2cm}{\raggedright{\tiny Kordofan}\\\footnotesize#1}};  
 }
 
 \newcommand{\numcolcomplete}[6]{%
@@ -99,10 +99,10 @@
 #4
 #5
 % \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (snc) [right=of adamawa,xshift=-.5cm] {{\bfseries\color{green}Southern NC}};       
-% \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (nnc) [above=of snc,yshift=-1cm]  {{\bfseries\color{brown}Northern NC}};
+% \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (nnc) [above=of snc,yshift=-1.01cm]  {{\bfseries\color{brown}Northern NC}};
 % \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (enc) [above=of adamawa,yshift=-.2cm] {{\bfseries Eastern NC}};    
 % \node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (wnc) [above=of atlantic,yshift=-.2cm] {{\bfseries\color{blue}Western NC}};  
-\node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (etym) [above=of atlantic,yshift=-1cm] {{\bfseries\color{red}#6}};  
+\node[minimum width=2.5cm, minimum height=.7cm, inner sep=3pt] (etym) [above=of atlantic,yshift=-1.01cm] {{\bfseries\color{red}#6}};  
 \end{tikzpicture}
 }
 
