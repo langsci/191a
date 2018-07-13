@@ -22,17 +22,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%             Frontmatter                      %%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% \includeonly{%
-% % chapters/abbreviations,
-% % chapters/preface,
-% % chapters/01,
-% % chapters/02,
-% % chapters/03bc,
-% chapters/03nonbc,
-% % chapters/04,
-% % % chapters/05,
-% % chapters/appendices
-% }
+\includeonly{%
+% chapters/abbreviations,
+% chapters/preface,
+% chapters/01,
+% chapters/02,
+chapters/03bc,
+chapters/03linker,
+chapters/03nonbc,
+% chapters/04,
+% chapters/05,
+% chapters/appendices
+}
 \begin{document} 
  
 \input{localcommands.tex} 
@@ -52,15 +53,16 @@
 %%%             Chapters                         %%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-\include{chapters/preface}
-\include{chapters/01}  
-\include{chapters/02}  
+\include{chapters/preface} %OK
+\include{chapters/01}   %OK
+\include{chapters/02}  %OK
 \include{chapters/03bc} 
+\input{chapters/03linker.tex} %to get good page breaks 
 \include{chapters/03nonbc} 
-\include{chapters/04}  
-\include{chapters/05}  
+\include{chapters/04}  %OK
+\include{chapters/05}  %OK
 \appendix
-\include{chapters/appendices}  
+\include{chapters/appendices}  %OK
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%             Backmatter                       %%% 

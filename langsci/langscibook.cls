@@ -55,7 +55,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{langscibook}[2018/01/15 Language Science Press]
 
+\RequirePackage[]{silence}
+\WarningsOff[hyperref]
+\WarningsOff[tocstyle]
+%TODO add a warning to log that warnings are disabled for some packages
 
+\usepackage{tipa}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %     Paths
@@ -64,6 +69,7 @@
 \newcommand{\fontpath}{}
 \newcommand{\logopath}{}
 \newcommand{\seriesinfopath}{}
+\newcommand{\localepath}{}
 \newcommand{\bstpath}{}
 \newcommand{\bbxpath}{}
 \newcommand{\cbxpath}{}
@@ -178,11 +184,12 @@
 	\renewcommand{\fontpath}{./langsci/fonts/}
 	\renewcommand{\logopath}{./langsci/graphics/}
 	\renewcommand{\seriesinfopath}{./langsci/seriesinfo/}
+	\renewcommand{\localepath}{./langsci/locale/}
 	\renewcommand{\bstpath}{./langsci/bst/}
-  \renewcommand{\bbxpath}{\bstpath biblatex-sp-unified/bbx/}
-  % \renewcommand{\bbxpath}{\bstpath}
-  \renewcommand{\cbxpath}{\bstpath biblatex-sp-unified/cbx/}
-  % \renewcommand{\cbxpath}{\bstpath}
+	\renewcommand{\bbxpath}{\bstpath biblatex-sp-unified/bbx/}
+	% \renewcommand{\bbxpath}{\bstpath}
+	\renewcommand{\cbxpath}{\bstpath biblatex-sp-unified/cbx/}
+	% \renewcommand{\cbxpath}{\bstpath}
 	\renewcommand{\stylepath}{./langsci/styles/}
 }
 \DeclareVoidOption{nobabel}{
@@ -212,7 +219,40 @@
 \DeclareVoidOption{collectiontoclong}{
 	\lsCollectiontrue%
 	\lsCollectionTOCLongtrue}
+\DeclareVoidOption{chinesefont}{
+	\newfontfamily\cn[Mapping=tex-text,Ligatures=Common,Scale=MatchUppercase]{AR PL UMing CN}
+% 	\newcommand{\zh}[1]{{\cn #1}}
+	\XeTeXlinebreaklocale 'zh'  
+	\XeTeXlinebreakskip = 0pt plus 1pt
+	\AdditionalFontImprint{UMing}
+}
+\DeclareVoidOption{japanesefont}{
+	  \newfontfamily\jpn[Mapping=tex-text,Ligatures=Common,Scale=MatchUppercase]{TakaoPGothic} %Japanese
+% 	  \newcommand{\jp}[1]{{{\jpn #1}}}
+	  \XeTeXlinebreaklocale 'ja'  
+	  \AdditionalFontImprint{TakaoPGothic}
+}
+% \DeclareVoidOption{koreanfont}{
+% 	\newfontfamily\hangul[Mapping=tex-text,Ligatures=Common,Scale=MatchUppercase]{./SourceHanSerifK.otf}
+% 	\newcommand{\kr}[1]{{\sffamily #1}}
+% 	\AdditionalFontImprint{Korean}}
+\DeclareVoidOption{arabicfont}{
+	\newfontfamily\arabicfont[Script=Arabic,ItalicFont=*,Scale=1.4]{arabtype.ttf}
+% 	\newcommand{\textarabic}[1]{{\arabicfont #1}}
+	\AdditionalFontImprint{Arabtype}
+}
+\DeclareVoidOption{hebrewfont}{
+	\newfontfamily\hebrewfont[Script=Hebrew,ItalicFont=*, Scale=0.9]{SBLHebrew.ttf}
+% 	\newcommand{\texthebrew}[1]{{\hebrewfont #1}}
+	\AdditionalFontImprint{SBLHebrew}
+}
+\DeclareVoidOption{syriacfont}{
+	\newfontfamily\syriacfont[Script=Syriac]{EstrangeloEdessa.ttf}
+% 	\newcommand{\textsyriac}[1]{{\syriacfont #1}}
+	\AdditionalFontImprint{Estrangelo Edessa}
+}
 \ProcessKeyvalOptions{langscibook}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -237,7 +277,7 @@
 %     Packages
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{tipa} %required here in TExlive 2016 because of conflict with Fontspec
+
 \usepackage{morewrites} %more helper files to write to
 \usepackage{etex}
 \reserveinserts{18}
@@ -272,7 +312,6 @@
 \newcommand{\podsetup}{
   \lsCovertrue
   \renewcommand{\maketitle}{}  %no need for this
-  \StrLen{\@subtitle}[\subtitleStrLen]     % Get the length of the subtitle. Later, we use this length to check if a subtitle exists.
   \pagestyle{empty}
   \pgfdeclarelayer{lspcls_bg}    % Create a background layer that serves as the canvas for the coloured rectangles.
   \pgfsetlayers{lspcls_bg,main}  % Order the background layer behind the main layer of TikZ.
@@ -365,6 +404,7 @@
 \newcommand{\podfrontcovertoptext}[3][white]{
   \renewcommand{\and}{\\}
   \renewcommand{\lastand}{\\}
+  \renewcommand{\newlineCover}{\\}
 
   \node [ execute at begin node={},
           font=\fontsize{#3}{17.25mm}\selectfont,
@@ -373,7 +413,7 @@
           align=left
         ] (lspcls_covertitle) {\color{#1}\lsCoverTitleFont{\raggedright\@title\par}};
 
-  \ifnum\subtitleStrLen=0  % Is there a subtitle? If no, just print the author.
+  \ifx\@subtitle\empty  % Is there a subtitle? If no, just print the author.
   \node [ font=\fontsize{25pt}{12.5mm}\selectfont,
           right,
           below = 11.2mm of lspcls_covertitle.south,
@@ -382,8 +422,9 @@
   \else % If yes, create a node for subtitle and author
   \node [ font=\fontsize{25pt}{10mm}\selectfont,
           below = 8mm of lspcls_covertitle.south,
-          text width=#2
-        ] (lspcls_coversubtitle) {\color{#1} \lsCoverSubTitleFont \nohyphens{\@subtitle}\par};
+          text width=#2, 
+          align=left
+        ] (lspcls_coversubtitle) {\color{#1}\lsCoverSubTitleFont{\raggedright\@subtitle\par}};
   \node [
           font=\fontsize{25pt}{12.5mm}\selectfont,
           right,
@@ -672,8 +713,45 @@
 
 \usepackage{ifxetex}
 \ifxetex\else\ClassError{langsci/langscibook}{Please use XeLaTeX!}{}\fi
+
+%% Typesetting of mathematical formulas
 \usepackage{amssymb} % has to be loaded before other stuff
+\usepackage{amsmath} % has to be loaded before mathspec/unicode-math
+
+\iflsNewtxmath\else
+%% There is a known problem in the interplay between \binom, unicode-math, and OTF
+%% https://tex.stackexchange.com/questions/269980/wrong-parentheses-size-in-binom-with-xelatex-and-unicode-math-in-displaystyle
+\ifx\Umathcode\@undefined\else
+
+\DeclareRobustCommand{\genfrac}[6]{%
+  \def\@tempa{#1#2}%
+  \edef\@tempb{\@nx\@genfrac\@mathstyle{#4}%
+    % just \over or \above never withdelims versions
+    \ifx @#3@\@@over\else\@@above\fi 
+  }%
+  \ifx\@tempa\@empty \else
+  \bgroup % so mathord not mathinner
+  \left\ifx\relax#1\relax.\else#1\fi % assumes . is null delimiter 
+  % otherwise add specified delimiter
+  \kern-\nulldelimiterspace % fractions add extra nulldelimiter space
+  \fi
+  \@tempb{#3}{\mathstrut{#5}}{\mathstrut{#6}}%
+  \ifx\@tempa\@empty \else
+  \kern-\nulldelimiterspace
+  \right\ifx\relax#2\relax.\else#2\fi
+  \egroup
+  \fi
+}
+\fi
+%% Provides \setmathfont
+\usepackage{unicode-math}
+\fi
+
+\iflsNewtxmath
+%% Deprecated:
 \PassOptionsToPackage{no-math}{fontspec} % must appear before metalogo or any fontspec stuff; deactivates fontspec's math settings, which is necessary to let newtxmath do the job
+\fi
+
 \usepackage{metalogo}\newcommand{\xelatex}{\XeLaTeX\xspace}
 \usepackage{dejavu}
 \usepackage{libertine}
@@ -685,6 +763,10 @@
 	BoldSlantedFont = DejaVuSansMono-BoldOblique.ttf
 	]{DejaVuSansMono.ttf}
 
+\iflsNewtxmath\else
+\setmathfont[AutoFakeBold]{libertinusmath-regular.otf}
+\fi
+
 \iflsModfonts% use Langsci fonts
   \setsansfont[
 	  %Ligatures={TeX,Common},		% not supported by ttf
@@ -694,7 +776,6 @@
 	  ItalicFont = Arimo-Italic_B.ttf ,
 	  BoldItalicFont = Arimo-BoldItalic_B.ttf
 	  ]{Arimo_B.ttf}
-
 
   \setmainfont[
 	  Ligatures={TeX,Common},
@@ -720,7 +801,6 @@
 	  BoldItalicFont = Arimo-BoldItalic.ttf
 	  ]{Arimo-Regular.ttf}
 
-
   \setmainfont[
 	  Ligatures={TeX,Common},
 	  Path=\fontpath,
@@ -738,6 +818,7 @@
 
 \fi
 
+%% Deprecated:
 \iflsNewtxmath		% some users have problems when installing newtxmath
 	\usepackage[libertine]{newtxmath}
 
@@ -899,12 +980,10 @@
 
    \pgfdeclarelayer{lspcls_bg}    % Create a background layer that serves as the canvas for the coloured rectangles.
    \pgfsetlayers{lspcls_bg,main}  % Order the background layer behind the main layer of TikZ.
-    \StrLen{\@subtitle}[\subtitleStrLen]
 
 \newcommand{\lsFrontPage}{    % Front page
 	\pgfdeclarelayer{lspcls_bg}    % Create a background layer that serves as the canvas for the coloured rectangles.
 	\pgfsetlayers{lspcls_bg,main}  % Order the background layer behind the main layer of TikZ.
-    \StrLen{\@subtitle}[\subtitleStrLen]
 % %   \lsCoverBlock
 % %   \lsCoverTitleAuthor
 % %   \lsCoverSeries
@@ -933,7 +1012,6 @@
 \newcommand{\lsSchmutztitel}{% Schmutztitel
   \pgfdeclarelayer{lspcls_bg}    % Create a background layer that serves as the canvas for the coloured rectangles.
   \pgfsetlayers{lspcls_bg,main}  % Order the background layer behind the main layer of TikZ.
-  \StrLen{\@subtitle}[\subtitleStrLen]
 % %   \lsCoverBlock
 % %   \lsCoverTitleAuthor
 % %   \lsCoverLogo
@@ -985,7 +1063,6 @@
 % %   \end{textblock}
   \pgfdeclarelayer{lspcls_bg}    % Create a background layer that serves as the canvas for the coloured rectangles.
   \pgfsetlayers{lspcls_bg,main}  % Order the background layer behind the main layer of TikZ.
-  \StrLen{\@subtitle}[\subtitleStrLen]
   \pagestyle{empty}
   \renewcommand{\and}{, }%
   \renewcommand{\lastand}{ \& }%
@@ -1127,7 +1204,7 @@ ISBN: &
 \IfStrEq{\lsBookDOI}{??}    % \IfStrEq from xstring
   {{\color{red} no DOI}}
   {\doi{\lsBookDOI}}\\
-Source code available from \url{www.github.com/langsci/\lsID}  \\
+Source code available from \href{https://www.github.com/langsci/\lsID}{www.github.com/langsci/\lsID}  \\
 Collaborative~reading:~\href{https://paperhive.org/documents/remote?type=langsci&id=\lsID}{paperhive.org/documents/remote?type=langsci\&id=\lsID}
 
 \bigskip
@@ -1154,7 +1231,7 @@ Proofreading:
 Open reviewing:
 \@openreviewer \\
 \fi
-Fonts: Linux Libertine, Arimo, DejaVu Sans Mono\lsAdditionalFontsImprint\\
+Fonts: Linux Libertine, Libertinus Math, Arimo, DejaVu Sans Mono\lsAdditionalFontsImprint\\
 Typesetting software: \XeLaTeX
 
 \bigskip
@@ -1378,11 +1455,15 @@ Storage and cataloguing done by FU Berlin \\[3ex]
 	useprefix = true, %sort von, van, de where they should appear
 	%refsection=chapter,
 	maxbibnames=99,
+	uniquename=false,
+	mincrossrefs=99,
 	maxcitenames=2,
 	isbn=false,
 	doi=false,
 	url=false,
 	eprint=false,
+        autolang=hyphen,
+        useprefix=true,
 	backend=\lsBiblatexBackend,
 	indexing=cite,
 	\iflsCollection\else
@@ -1430,12 +1511,45 @@ Storage and cataloguing done by FU Berlin \\[3ex]
   \clearfield{note}%
 }
 %% DOIs are handled after hyperref.
-\defbibheading{references}{\chapter{References}\sloppy} % FIXME: adjust with language
+\defbibheading{references}{\chapter{References}\sloppy}
 \defbibheading{french}{\chapter{Références bibliographiques}\sloppy}
 \defbibheading{german}{\chapter{Literaturverzeichnis}\sloppy}
 \defbibheading{portuguese}{\chapter{Referências}\sloppy}
-\defbibheading{chinese}{\chapter{References}\sloppy}
+\defbibheading{chinese}{\chapter{参考文献}\sloppy}
 
+
+% fix \citep* et.al.
+% unclear why it was overwritten, these are the definitions from blx-natbib.def
+\renewrobustcmd*{\citet}{%
+  \@ifstar
+    {\AtNextCite{\AtEachCitekey{\defcounter{maxnames}{999}}}%
+     \textcite}
+    {\textcite}}
+
+\renewrobustcmd*{\citep}{%
+  \@ifstar
+    {\AtNextCite{\AtEachCitekey{\defcounter{maxnames}{999}}}%
+     \parencite}
+    {\parencite}}
+
+\renewrobustcmd*{\citealt}{%
+  \@ifstar
+    {\AtNextCite{%
+       \def\nameyeardelim{\addspace}%
+       \AtEachCitekey{\defcounter{maxnames}{999}}}%
+     \orgcite}
+    {\AtNextCite{\def\nameyeardelim{\addspace}}%
+     \orgcite}}
+
+\renewrobustcmd*{\citealp}{%
+  \@ifstar
+    {\AtNextCite{\AtEachCitekey{\defcounter{maxnames}{999}}}%
+     \orgcite}
+    {\orgcite}}
+
+\let\citew\citet
+
+\let\orgcite=\cite
 \let\cite=\citet 	% in order to prevent inconsistencies between \cite and \citet
 
 %% penalties against widows and orphans in bibliography
@@ -1566,26 +1680,50 @@ width=.8\textwidth
   \fi
 }
 
+\newcommand{\lsIndexTitle}{Index}
 \newcommand{\lsLanguageIndexTitle}{Language index}	% This can be changed according to the language.
 \newcommand{\lsSubjectIndexTitle}{Subject index}
 \newcommand{\lsNameIndexTitle}{Name index}
+\newcommand{\lsPrefaceTitle}{Preface}
+\newcommand{\lsAcknowledgementTitle}{Acknowledgments}
+\newcommand{\lsAbbreviationsTitle}{Abbreviations}
+\newcommand{\lsReferencesTitle}{references} % This aligns with \defbibheading
+\IfFileExists{{\localepath langsci-hyphenation-universal}}{\input{\localepath langsci-hyphenation-universal}}{}
 
 \ifx\lsBookLanguage\lsBookLanguageFrench
+\renewcommand{\lsIndexTitle}{Index}
 \renewcommand{\lsNameIndexTitle}{Index des auteurs cités}
 \renewcommand{\lsSubjectIndexTitle}{Index des termes}
 \renewcommand{\lsLanguageIndexTitle}{Index des langues}
+\renewcommand{\lsPrefaceTitle}{Préface}
+\renewcommand{\lsAcknowledgementTitle}{Remerciements}
+\renewcommand{\lsAbbreviationsTitle}{Liste des abréviations utilisées dans les gloses des exemples}
+\renewcommand{\lsReferencesTitle}{french}
+\IfFileExists{{\localepath langsci-hyphenation-fr}}{\input{\localepath langsci-hyphenation-fr}}{}
 \fi
 
 \ifx\lsBookLanguage\lsBookLanguageGerman
+\renewcommand{\lsIndexTitle}{Register}
 \renewcommand{\lsNameIndexTitle}{Autorenregister}
 \renewcommand{\lsSubjectIndexTitle}{Sachregister}
 \renewcommand{\lsLanguageIndexTitle}{Sprachregister}
+\renewcommand{\lsPrefaceTitle}{Vorwort}
+\renewcommand{\lsAcknowledgementTitle}{Danksagung}
+\renewcommand{\lsAbbreviationsTitle}{Abkürzungsverzeichnis}
+\renewcommand{\lsReferencesTitle}{german}
+\IfFileExists{{\localepath langsci-hyphenation-de}}{\input{\localepath langsci-hyphenation-de}}{}
 \fi
 
 \ifx\lsBookLanguage\lsBookLanguagePortuguese
+\renewcommand{\lsIndexTitle}{Índices}
 \renewcommand{\lsNameIndexTitle}{Índice remissivo de autores citados}
 \renewcommand{\lsSubjectIndexTitle}{Índice remissivo temático}
 \renewcommand{\lsLanguageIndexTitle}{Índice remissivo de línguas}
+\renewcommand{\lsPrefaceTitle}{Prefácio}
+\renewcommand{\lsAcknowledgementTitle}{Agradecimentos}
+\renewcommand{\lsAbbreviationsTitle}{\colorbox{red}{Translation info for Abbv missing}}
+\renewcommand{\lsReferencesTitle}{portugese}
+\IfFileExists{{\localepath langsci-hyphenation-pt}}{\input{\localepath langsci-hyphenation-pt}}{}
 \fi
 
 \AtBeginDocument{
@@ -1658,8 +1796,8 @@ width=.8\textwidth
     \let\isold\is
     \let\ilold\il
     \let\iaold\ia
-    \renewcommand{\isi}[1]{\sethlcolor{green}\hl{#1}\isold{#1}}
-    \renewcommand{\is}[1]{{\tikzstyle{notestyleraw} += [text width=1.5cm]\todo[color=green,size=\scriptsize]{\tiny#1}\isold{#1}}}
+    \renewcommand{\isi}[1]{\sethlcolor{lsSoftGreen}\hl{#1}\isold{#1}}
+    \renewcommand{\is}[1]{{\tikzstyle{notestyleraw} += [text width=1.5cm]\todo[color=lsSoftGreen,size=\scriptsize]{\tiny#1}\isold{#1}}}
     \renewcommand{\ili}[1]{\sethlcolor{yellow}\hl{#1}\ilold{#1}}
     \renewcommand{\il}[1]{{\tikzstyle{notestyleraw} += [text width=1.5cm]\todo[color=yellow,size=\scriptsize]{\tiny#1}\ilold{#1}}}
     \renewcommand{\iai}[1]{\sethlcolor{pink}\hl{#1}\iaold{#1}}
@@ -1976,7 +2114,17 @@ width=.8\textwidth
 
 %% hspace over width of something without showing it
 \newlength{\LSPTmp}
-% \newcommand*{\hspaceThis}[1]{\settowidth{\LSPTmp}{#1}\hspace*{\LSPTmp}}
-\newcommand*{\hspaceThis}[1]{\hphantom{#1}} %should be equivalent
+\newcommand*{\hspaceThis}[1]{\settowidth{\LSPTmp}{#1}\hspace*{\LSPTmp}}
+
+% no this does add vertical space instead of horizontal St. Mü. 04.03.2018
+% \newcommand*{\hspaceThis}[1]{\hphantom{#1}} %should be equivalent
+
+% in this example
+%% \eal
+%% \ex \hspaceThis{*~}The boy who is running fast can jump high. $\to$\\
+%%  {}* Is the boy who running fast can jump high?
+%% \ex \hspaceThis{*~}The boy who can run fast can jump high. $\to$\\
+%%  {}* Can the boy who run fast can jump high?
+%% \zl
 
 \endinput
